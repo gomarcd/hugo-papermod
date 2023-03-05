@@ -1,4 +1,4 @@
-baseURL: "http://localhost:1314/"
+baseURL: "/"
 title: ExampleSite
 paginate: 5
 theme: PaperMod

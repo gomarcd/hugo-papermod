@@ -2,21 +2,32 @@ version: "3"
 
 services:
   hugo-papermod:
-    image: klakegg/hugo:0.107.0-ext
-    container_name: hugo-papermod-build
-    command: server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hugo-papermod
     volumes:
-      - ".:/src"
-  nginx:
-    image: nginx:alpine
-    container_name: hugo-papermod-nginx
-    restart: always
-    depends_on:
-      - hugo-papermod
-    volumes:
-      - ./public:/usr/share/nginx/html
+      - "./public:/usr/share/nginx/html"
+      - "./:/usr/share/nginx"
     ports:
-      - "1314:80"
+      - "1315:80"
+
+  # hugo-papermod:
+  #   image: klakegg/hugo:0.107.0-ext
+  #   container_name: hugo-papermod-build
+  #   command: server
+  #   volumes:
+  #     - ".:/src"
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: hugo-papermod-nginx
+  #   restart: always
+  #   depends_on:
+  #     - hugo-papermod
+  #   volumes:
+  #     - ./public:/usr/share/nginx/html
+  #   ports:
+  #     - "1316:80"
 #   caddy:
 #     image: caddy:latest
 #     restart: unless-stopped
