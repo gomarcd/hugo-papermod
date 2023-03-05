@@ -4,7 +4,7 @@ services:
   hugo-papermod:
     image: klakegg/hugo:0.107.0-ext
     container_name: hugo-papermod-build
-    command: server --port 1314
+    command: server
     volumes:
       - ".:/src"
   nginx:
