@@ -1,0 +1,6 @@
+# If you uncommented Caddy in docker-compose.yml, use this
+
+yourDomain.com {
+        root * /srv
+        file_server
+}

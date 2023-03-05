@@ -3,13 +3,13 @@ version: "3"
 services:
   hugo-papermod:
     image: klakegg/hugo:0.107.0-ext
-    container_name: hugo-build
-    command: server
+    container_name: hugo-papermod-build
+    command: server --port 1314
     volumes:
       - ".:/src"
   nginx:
     image: nginx:alpine
-    container_name: hugo-nginx
+    container_name: hugo-papermod-nginx
     restart: always
     depends_on:
       - hugo-papermod
@@ -17,3 +17,19 @@ services:
       - ./public:/usr/share/nginx/html
     ports:
       - "1314:80"
+#   caddy:
+#     image: caddy:latest
+#     restart: unless-stopped
+#     ports:
+#       - "80:80"
+#       - "443:443"
+#       - "443:443/udp"
+#     volumes:
+#       - $PWD/Caddyfile:/etc/caddy/Caddyfile
+#       - $PWD/public:/srv
+#       - caddy_data:/data
+#       - caddy_config:/config
+# volumes:
+#   caddy_data:
+#     external: true
+#   caddy_config:
